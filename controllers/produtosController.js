@@ -1,32 +1,42 @@
 const mysql = require('../mysql').pool;
 
-exports.getProdutos =  (req, res, next) => {
-    mysql.getConnection((error, conn) => {
 
+exports.getProdutos =  (req, res, next) => {
+    try {
+        mysql.getConnection((error, conn) => {
+
+            if (error) {
+                return res.status(500).send({
+                    error: error
+                });
+            }
+    
+            conn.query(
+            'SELECT * FROM produtos',
+            (error, resultado, field) => {
+                conn.release(); //Libera a conexão
+    
+                if (error) {
+                    res.status(500).send({
+                        error: error,
+                        response: null
+                    });
+                } 
+    
+                    res.status(201).send({
+                        data: resultado,
+                    });
+                }
+            )
+        });
+    } catch (error) {
         if (error) {
             return res.status(500).send({
                 error: error
             });
         }
-
-        conn.query(
-        'SELECT * FROM produtos',
-        (error, resultado, field) => {
-            conn.release(); //Libera a conexão
-
-            if (error) {
-                res.status(500).send({
-                    error: error,
-                    response: null
-                });
-            } 
-
-                res.status(201).send({
-                    data: resultado,
-                });
-            }
-        )
-    }); 
+    }
+     
 }
 
 exports.postProdutos = (req, res, next) => {
