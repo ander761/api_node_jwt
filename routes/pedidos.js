@@ -8,8 +8,15 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
+
+    const pedido = {
+        nome: req.body.nome,
+        id: req.body.id
+    };
+
     res.status(201).send({
-        message: "pedidos criado com sucesso"
+        message: "pedidos criado com sucesso",
+        pedido: pedido
     });    
 });
 
