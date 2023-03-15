@@ -1,0 +1,10 @@
+{
+    "env": {
+        "MYSQL_USER": "admin",
+        "MYSQL_PASSWORD": "ubtPtYqy4yE6DCAlVtAM",
+        "MYSQL_DATABASE": "fullmanager_dev",
+        "MYSQL_HOST": "mysqlws.fullmanager.me",
+        "MYSQL_PORT": 3306,
+        "JWT_KEY": "b8a4cfd5b93b832a9c8033415f8c0b52bd901721297799b0476f0efee09797fa" 
+    }
+}
